@@ -8,10 +8,10 @@ type ProductCardProps = {
 
 export default function ProductCard({ name, imageUrl, tags }: ProductCardProps) {
   return (
-    <div className="rounded-lg overflow-hidden h-full shadow-sm border border-accent1 bg-white">
+    <div className="select-none rounded-lg overflow-hidden h-full shadow-sm border border-accent1 bg-white hover:shadow-xl active:scale-95 transition duration-200">
       {/* Product Image */}
       <div className="relative w-full aspect-square">
-        <Image src={imageUrl} alt={name} fill className="object-cover" />
+        <Image src={imageUrl} alt={name} fill className="object-cover undraggable" />
       </div>
       <div className="flex flex-col p-4">
         {/* Product Name */}
