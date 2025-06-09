@@ -2,13 +2,7 @@ import { products } from "@/lib/Products";
 import { categories } from "@/lib/Categories";
 import ProductList from "@/components/ProductList";
 
-interface TagPageProps {
-  params: {
-    tag: string;
-  };
-}
-
-export default function TagPage({ params }: TagPageProps) {
+export default function TagPage({ params }: { params: { tag: string } }) {
   const tag = params.tag;
 
   // format slug
