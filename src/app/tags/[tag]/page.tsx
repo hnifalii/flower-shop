@@ -2,13 +2,15 @@ import { products } from "@/lib/Products";
 import { categories } from "@/lib/Categories";
 import ProductList from "@/components/ProductList";
 
-export default function TagPage({ params }: { params: { tag: string } }) {
-  const tag = params.tag;
+export default async function TagPage({
+  params,
+}: {
+  params: Promise<{ tag: string }>;
+}) {
+  const { tag } = await params;
 
-  // format slug
   const formattedTag = tag.replace(/-/g, " ").toLowerCase();
 
-  // match category  
   const category = categories.find(
     (cat) => cat.name.toLowerCase() === formattedTag
   );
@@ -21,7 +23,6 @@ export default function TagPage({ params }: { params: { tag: string } }) {
     );
   }
 
-  // filter products by categoryId
   const filteredProducts = products.filter((product) =>
     product.categoryId.includes(category.id)
   );
