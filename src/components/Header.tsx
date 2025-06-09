@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <>
       {/* Header */}
-      <header className="flex flex-col w-full px-6 sm:px-10 md:px-14 lg:px-14 xl:px-14 py-6 gap-4 bg-white items-center border-b-1 border-accent2">
+      <header className="flex flex-col sticky top-0 z-50 w-full px-6 sm:px-10 md:px-14 lg:px-14 xl:px-14 py-5 gap-4 bg-gradient-to-r from-violet-100 via-indigo-100 to-sky-50 items-center border-b-1 border-accent2">
         <div className="flex flex-col sm:flex-row w-full gap-4 sm:gap-12 md:gap-4 items-center">
           {/* Logo */}
           <Link
@@ -29,7 +29,7 @@ export default function Header() {
                 type="search"
                 id="header-search"
                 autoComplete="off"
-                className="block w-full p-3 ps-10 rounded-md border-0 bg-accent1 text-accent2 text-sm focus:outline-2 focus:outline-accent2"
+                className="block w-full p-3 ps-10 rounded-md border-0 bg-gradient-to-l from-violet-50 via-indigo-100 to-sky-50 text-accent2 text-sm outline-1 focus:outline-2 outline-accent2"
                 placeholder="Search anything..."
                 required
               />

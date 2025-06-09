@@ -1,7 +1,9 @@
-export const categories = [
+import { Category } from "@/utils/Types";
+
+export const categories: Category[] = [
   {
     id: 1,
-    name: "Bouquette",
+    name: "Bouquets",
   },
   {
     id: 2,
@@ -17,6 +19,10 @@ export const categories = [
   },
   {
     id: 5,
+    name: "Mixed Types",
+  },
+  {
+    id: 6,
     name: "Animated",
   },
 ];

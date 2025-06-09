@@ -3,11 +3,12 @@ import Image from "next/image";
 type ProductCardProps = {
   name: string;
   imageUrl: string;
+  tags?: string[];
 };
 
-export default function ProductCard({ name, imageUrl }: ProductCardProps) {
+export default function ProductCard({ name, imageUrl, tags }: ProductCardProps) {
   return (
-    <div className="rounded-lg overflow-hidden h-full shadow-sm border bg-white">
+    <div className="rounded-lg overflow-hidden h-full shadow-sm border border-accent1 bg-white">
       {/* Product Image */}
       <div className="relative w-full aspect-square">
         <Image src={imageUrl} alt={name} fill className="object-cover" />
@@ -23,15 +24,11 @@ export default function ProductCard({ name, imageUrl }: ProductCardProps) {
           <div className="pointer-events-none absolute right-0 top-0 h-full w-12 bg-gradient-to-l from-white to-transparent z-10" />
 
           <div className="flex gap-1 overflow-x-auto">
-            <span className="w-max whitespace-nowrap p-1 text-xs text-gray-400 border-2 border-accent1 rounded-md shri">
-              Tags here
+            {tags?.map((tag, index) => (
+            <span key={index} className="w-max whitespace-nowrap p-1 text-xs text-gray-400 border-1 md:border-2 border-accent1 rounded-md shri">
+              {tag}
             </span>
-            <h6 className="w-max whitespace-nowrap p-1 text-xs text-gray-400 border-2 border-accent1 rounded-md shri">
-              Tags here
-            </h6>
-            <h6 className="w-max whitespace-nowrap p-1 text-xs text-gray-400 border-2 border-accent1 rounded-md shri">
-              Tags here
-            </h6>
+            ))}
           </div>
         </div>
       </div>
