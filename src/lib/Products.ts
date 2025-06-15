@@ -5,7 +5,7 @@
       id: 1,
       name: "Rose Plushie",
       imageUrl: "/images/static/rose-plushie.webp",
-      categoryId: [2],
+      categoryId: [2,1,3,4,5,6],
     },
     {
       id: 2,
@@ -59,6 +59,12 @@
       id: 10,
       name: "Dead Rose",
       imageUrl: "/images/static/dead-rose-emoji.jpg",
+      categoryId: [2],
+    },
+    {
+      id: 11,
+      name: "Cheer Up",
+      imageUrl: "/images/static/cheer-up.jpg",
       categoryId: [2],
     },
   ];

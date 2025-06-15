@@ -20,11 +20,10 @@ export default function ProductList({
         return (
           <div
             key={product.id}
-            className="w-[180px] sm:w-[140px] md:w-[180px] lg:w-[200px] xl:w-[220px]"
+            className="w-[150px] sm:w-[150px] md:w-[180px] lg:w-[200px] xl:w-[220px]"
           >
             <ProductCard
-              name={product.name}
-              imageUrl={product.imageUrl}
+              product={product}
               tags={tags || ""}
             />
           </div>
