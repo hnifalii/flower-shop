@@ -16,7 +16,7 @@ import {
   getFileExtension,
   getFileName,
   handleDownload,
-  handleWebShare,
+  handleShare
 } from "@/utils/Helpers";
 
 export default function DetailsPage({
@@ -216,7 +216,7 @@ export default function DetailsPage({
                 {/* Share */}
                 <div className="flex w-full justify-between gap-2">
                   <button
-                    onClick={() => handleWebShare(product)}
+                    onClick={() => handleShare(product)}
                     className=" flex w-full justify-center items-center p-2 gap-1 active:scale-[0.98] bg-gradient-to-l from-violet-100 hover:from-sky-50 via-indigo-100 to-sky-50 hover:to-violet-100 border border-accent2 rounded-lg transition duration-200"
                   >
                     <span>Share</span>

@@ -52,14 +52,54 @@ export function useImageDimensions(url: string) {
 
 export function handleWebShare(product: Product) {
   if (navigator.share) {
-    navigator.share({
-      title: product.name,
-      text: "Check this out!",
-      url: product.imageUrl,
-    })
+    navigator
+      .share({
+        title: product.name,
+        text: "Check this out!",
+        url: product.imageUrl,
+      })
       .then(() => console.log("Shared successfully"))
       .catch((error) => console.error("Error sharing:", error));
   } else {
+    alert("Sharing is not supported on this device.");
+  }
+}
+
+export async function handleShare(product: Product) {
+  if (navigator.canShare && navigator.canShare({ files: [] })) {
+    // Device support file sharing
+    try {
+      const response = await fetch(product.imageUrl);
+      const blob = await response.blob();
+      const file = new File([blob], `${product.name}.jpg`, { type: blob.type });
+
+      await navigator.share({
+        files: [file],
+        title: product.name,
+        text: "Check out this product!",
+      });
+
+      alert("Image shared successfully!");
+    } catch (error) {
+      console.error("Error sharing image:", error);
+      alert("Failed to share image.");
+    }
+  } else if (navigator.share) {
+    // Device only supports link/text sharing
+    try {
+      await navigator.share({
+        title: product.name,
+        text: "Check out this product!",
+        url: window.location.href, // Or product image URL if you want
+      });
+
+      alert("Link shared successfully!");
+    } catch (error) {
+      console.error("Error sharing link:", error);
+      alert("Failed to share link.");
+    }
+  } else {
+    // Fallback for unsupported devices
     alert("Sharing is not supported on this device.");
   }
 }
