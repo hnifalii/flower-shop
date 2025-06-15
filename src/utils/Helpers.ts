@@ -103,3 +103,46 @@ export async function handleShare(product: Product) {
     alert("Sharing is not supported on this device.");
   }
 }
+
+export function useShare() {
+  const [isSharing, setIsSharing] = useState(false);
+
+  async function shareProduct(product: Product) {
+    setIsSharing(true);
+    console.log("Checking share support...");
+
+    try {
+      const response = await fetch(product.imageUrl);
+      const blob = await response.blob();
+      const file = new File([blob], `${product.name}.jpg`, { type: blob.type });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        console.log("Sharing image...");
+        await navigator.share({
+          files: [file],
+          title: product.name,
+          text: "Check out this product!",
+        });
+        alert("Image shared successfully!");
+      } else if (navigator.share) {
+        console.log("Sharing link...");
+        await navigator.share({
+          title: product.name,
+          text: "Check out this product!",
+          url: window.location.href,
+        });
+        alert("Link shared successfully!");
+      } else {
+        console.log("Sharing not supported.");
+        alert("Sharing is not supported on this device.");
+      }
+    } catch (error) {
+      console.error("Sharing failed:", error);
+      alert("Sharing failed.");
+    } finally {
+      setIsSharing(false);
+    }
+  }
+
+  return { shareProduct, isSharing };
+}
