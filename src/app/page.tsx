@@ -1,10 +1,21 @@
+"use client";
+
 import { products } from "@/lib/Products";
 import { categories } from "@/lib/Categories";
 import ProductList from "@/components/ProductList";
 import Image from "next/image";
 import Link from "next/link";
+import { getRandomProductId } from "@/utils/helpers.client";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
+  const randomizerClick = () => {
+    const randomId = getRandomProductId();
+    router.push(`/details/${randomId}`);
+  };
+
   return (
     <div className="w-full flex flex-col items-center overflow-y-scroll">
       {/* Hero */}
@@ -33,11 +44,13 @@ export default function Home() {
                 See Products
               </button>
             </Link>
-            <Link href="" className="w-full">
-              <button className="w-full px-3 md:px-3 lg:px-6 py-2 md:py-2 bg-transparent hover:bg-accent1 border-[1.5] md:border-2 hover:border-transparent border-accent1 text-accent1 whitespace-nowrap hover:text-gray-600 font-medium text-xs lg:text-base rounded-md active:scale-95 transition duration-200">
-                Randomizer
-              </button>
-            </Link>
+
+            <button
+              onClick={randomizerClick}
+              className="w-full px-3 md:px-3 lg:px-6 py-2 md:py-2 bg-transparent hover:bg-accent1 border-[1.5] md:border-2 hover:border-transparent border-accent1 text-accent1 whitespace-nowrap hover:text-gray-600 font-medium text-xs lg:text-base rounded-md active:scale-95 transition duration-200"
+            >
+              Randomizer
+            </button>
           </div>
         </div>
 
@@ -56,7 +69,8 @@ export default function Home() {
           alt="hero"
           fill
           className="object-cover block md:hidden"
-        />
+        /> 
+        
       </section>
 
       <section

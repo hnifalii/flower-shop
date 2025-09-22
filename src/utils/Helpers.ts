@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Product } from "./Types";
+import { Product } from "./types";
 
 export function handleDownload(product: Product) {
   const link = document.createElement("a");

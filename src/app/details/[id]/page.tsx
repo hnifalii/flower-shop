@@ -17,7 +17,7 @@ import {
   getFileName,
   handleDownload,
   useShare,
-} from "@/utils/Helpers";
+} from "@/utils/helpers";
 
 export default function DetailsPage({
   params,

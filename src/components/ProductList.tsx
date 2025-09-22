@@ -1,5 +1,5 @@
 import ProductCard from "@/components/ProductCard";
-import { Product, Category } from "@/utils/Types";
+import { Product, Category } from "@/utils/types";
 
 type ProductListProps = {
   products: Product[];
@@ -22,10 +22,7 @@ export default function ProductList({
             key={product.id}
             className="w-[150px] sm:w-[150px] md:w-[180px] lg:w-[200px] xl:w-[220px]"
           >
-            <ProductCard
-              product={product}
-              tags={tags || ""}
-            />
+            <ProductCard product={product} tags={tags || ""} />
           </div>
         );
       })}

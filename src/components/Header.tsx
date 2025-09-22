@@ -4,8 +4,21 @@ import { categories } from "@/lib/Categories";
 import Link from "next/link";
 import { IoMdSearch } from "react-icons/io";
 import CategoryChip from "./CategoryChip";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Header() {
+  const router = useRouter()
+
+  const [searchTerm, setSearchTerm] = useState("")
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchTerm.trim() !== "") {
+      router.push(`/search?q=${encodeURIComponent(searchTerm)}`)
+    }
+  }
+
   return (
     <>
       {/* Header */}
@@ -20,7 +33,7 @@ export default function Header() {
           </Link>
 
           {/* Search */}
-          <form className="w-full" onSubmit={(e) => e.preventDefault()}>
+          <form className="w-full" method="post" onSubmit={handleSearch}>
             <div className="relative">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                 <IoMdSearch size={24} className="text-accent2 scale-75 md:scale-100" />
@@ -31,6 +44,7 @@ export default function Header() {
                 autoComplete="off"
                 className="block w-full p-3 ps-10 rounded-md border-0 bg-gradient-to-l from-violet-50 via-indigo-100 to-sky-50 text-accent2 text-sm outline-1 focus:outline-2 outline-accent2"
                 placeholder="Search anything..."
+                onChange={(e) => setSearchTerm(e.target.value)}
                 required
               />
               {/* <button
